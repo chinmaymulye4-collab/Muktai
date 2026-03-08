@@ -63,6 +63,18 @@ animation:confetti 3s linear forwards;
 100%{transform:translateY(110vh) rotate(720deg);}
 }
 
+.heartRain{
+position:fixed;
+color:#ff4d6d;
+font-size:22px;
+animation:fall 4s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
+
 .cursor-heart{
 position:fixed;
 pointer-events:none;
@@ -203,17 +215,14 @@ yesBtn.innerHTML="YES!!! ❤️";
 const danceArea=document.getElementById("danceArea");
 danceArea.style.display="flex";
 
-const v1=document.getElementById("dance1");
-const v2=document.getElementById("dance2");
+document.getElementById("dance1").play();
+document.getElementById("dance2").play();
 
-v1.play();
-v2.play();
-
-for(let i=0;i<160;i++){
+for(let i=0;i<200;i++){
 
 let conf=document.createElement("div");
 
-conf.innerHTML=["🎉","❤️","✨","💖","🥳"][Math.floor(Math.random()*5)];
+conf.innerHTML=["🎉","✨","🥳"][Math.floor(Math.random()*3)];
 
 conf.classList.add("confetti");
 
@@ -224,6 +233,24 @@ conf.style.fontSize=(Math.random()*30+20)+"px";
 document.body.appendChild(conf);
 
 setTimeout(()=>{conf.remove()},3000);
+
+}
+
+for(let i=0;i<150;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.classList.add("heartRain");
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*25+15)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},4000);
 
 }
 
