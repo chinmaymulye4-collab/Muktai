@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>A Question For You ❤️</title>
+
+<style>
+body{
+text-align:center;
+font-family:Arial;
+background:#ffe6f0;
+padding-top:100px;
+overflow:hidden;
+}
+
+button{
+font-size:22px;
+padding:15px 30px;
+margin:20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+
+#yes{
+background:#ff4d6d;
+color:white;
+}
+
+#no{
+background:#999;
+color:white;
+position:absolute;
+}
+
+.heart{
+position:fixed;
+top:-10px;
+color:#ff4d6d;
+font-size:20px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(110vh);}
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Hey 😊</h1>
+<h2>Will you go out for coffee with me? ☕</h2>
+
+<button id="yes" onclick="yesClick()">YES ❤️</button>
+<button id="no">NO 🙈</button>
+
+<script>
+
+const noBtn=document.getElementById("no");
+
+noBtn.addEventListener("mouseover",function(){
+
+let x=Math.random()*(window.innerWidth-100);
+let y=Math.random()*(window.innerHeight-100);
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
+});
+
+function yesClick(){
+alert("Yay! I knew it 😄❤️");
+}
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},5000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
