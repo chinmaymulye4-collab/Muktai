@@ -38,12 +38,12 @@ margin:20px;
 border:none;
 border-radius:12px;
 cursor:pointer;
+transition:0.3s;
 }
 
 #yes{
 background:#ff4d6d;
 color:white;
-transition:0.3s;
 }
 
 #no{
@@ -72,12 +72,16 @@ font-size:18px;
 #danceArea{
 display:none;
 margin-top:40px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
 }
 
-#danceArea img{
-width:220px;
-margin:10px;
-border-radius:10px;
+#danceArea video{
+height:240px;
+border-radius:12px;
+object-fit:cover;
 }
 
 </style>
@@ -95,11 +99,11 @@ border-radius:10px;
 
 <div id="danceArea">
 
-<video width="240" autoplay loop muted>
+<video autoplay loop muted>
 <source src="dance1.mp4" type="video/mp4">
 </video>
 
-<video width="240" autoplay loop muted>
+<video autoplay loop muted>
 <source src="dance2.mp4" type="video/mp4">
 </video>
 
@@ -151,6 +155,7 @@ setTimeout(typeStory,700);
 typeStory();
 
 const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
 
 const funnyMessages=[
 "Wait wait... think again 😅",
@@ -161,6 +166,7 @@ const funnyMessages=[
 ];
 
 let msgIndex=0;
+let noCount=0;
 
 noBtn.addEventListener("mouseover",function(){
 
@@ -173,6 +179,16 @@ noBtn.style.top=y+"px";
 document.getElementById("story").innerHTML=funnyMessages[msgIndex%funnyMessages.length];
 
 msgIndex++;
+noCount++;
+
+if(noCount>=4){
+
+document.getElementById("story").innerHTML="Okay Muktai 😄 clearly the YES button looks easier to click.";
+
+yesBtn.style.transform="scale(2.2)";
+noBtn.style.transform="scale(0.5)";
+
+}
 
 });
 
@@ -180,14 +196,12 @@ function yesClick(){
 
 document.getElementById("story").innerHTML="YAY!! ❤️ I'm really happy you said YES!";
 
-document.getElementById("no").style.display="none";
-
-let yesBtn=document.getElementById("yes");
+noBtn.style.display="none";
 
 yesBtn.style.transform="scale(1.8)";
 yesBtn.innerHTML="YES!!! ❤️";
 
-document.getElementById("danceArea").style.display="block";
+document.getElementById("danceArea").style.display="flex";
 
 for(let i=0;i<160;i++){
 
